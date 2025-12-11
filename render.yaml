@@ -1,0 +1,9 @@
+services:
+  - type: web
+    name: o-estrangeiro-web
+    env: docker
+    region: oregon
+    plan: free
+    dockerfilePath: ./Dockerfile
+    buildCommand: echo "build"
+    startCommand: ["node", "backend/server.js"]
