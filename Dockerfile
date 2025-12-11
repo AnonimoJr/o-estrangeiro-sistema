@@ -1,22 +1,19 @@
 FROM node:18
 
-# Criar diretório da aplicação
 WORKDIR /app
 
 # Copiar backend e instalar dependências
-COPY backend ./backend
+COPY backend/package*.json ./backend/
 WORKDIR /app/backend
-RUN npm init -y
-RUN npm install express cors
+RUN npm install
 
-# Voltar para raiz
-WORKDIR /app
+# Copiar todo backend
+COPY backend/ ./backend/
 
 # Copiar frontend
-COPY frontend ./frontend
+WORKDIR /app
+COPY frontend/ ./frontend/
 
-# Expor porta
 EXPOSE 3001
 
-# Rodar backend
 CMD ["node", "backend/server.js"]
